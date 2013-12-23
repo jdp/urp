@@ -41,7 +41,7 @@ def process(args, url, query):
 
     hostname = args.hostname or (url.hostname or '')
 
-    port = args.port or (url.port or '')
+    port = str(args.port or (url.port or ''))
 
     params = args.params or url.params
 
