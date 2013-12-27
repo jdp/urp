@@ -15,6 +15,19 @@ query strings,
 and
 fragments.
 
+Installation
+------------
+
+Install from PyPI::
+
+$ pip install urp
+
+Install from git checkout::
+
+$ git clone https://github.com/jdp/urp.git
+$ cd urp
+$ python setup.py install
+
 Basic Usage
 -----------
 
