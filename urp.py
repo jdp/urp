@@ -180,7 +180,7 @@ def main():
     ap.add_argument(      '--no-query-params', action='store_true', help="disable query parameter parsing")
     ap.add_argument(      '--sort-query', action='store_true', help="sort printed query parameters by name")
     ap.add_argument('-x', '--ignore-query', action='append', dest='ignored_queries', metavar='QUERY', default=[], help="ignore query parameter")
-    ap.add_argument(      '--version', action='version', version='%(prog)s 0.1.0')
+    ap.add_argument(      '--version', action='version', version='%(prog)s 0.1.1')
     # Positional arguments
     ap.add_argument('urls', nargs='*', metavar='URL')
     args = ap.parse_args()

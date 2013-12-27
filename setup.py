@@ -1,8 +1,5 @@
 import os
 
-# try:
-#     from distutils.core import setup
-# except ImportError:
 from setuptools import setup
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -24,7 +21,7 @@ classifiers = [
 
 dist = setup(
     name='urp',
-    version='0.1.0',
+    version='0.1.1',
     license='MIT',
     description="A tool to extract and modify URL features",
     long_description=readme,
