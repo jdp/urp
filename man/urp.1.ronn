@@ -157,6 +157,6 @@ This pattern is commonly used to sign API requests:
 
 ## COPYRIGHT
 
-urp is copyright 2014 Justin Poliey.
+urp is copyright 2014 Justin Poliey [http://justinpoliey.com](http://justinpoliey.com)
 
 
