@@ -1,0 +1,162 @@
+# urp(1) -- extract and modify URL features
+
+## SYNOPSIS
+
+`urp` `-d`|`--print-path` <url>...<br>
+`urp` `-D`|`--path`=<path> <url>...<br>
+`urp` `--sort-query` <url>...
+
+## DESCRIPTION
+
+**urp** extracts and modifies URL features.
+It knows all about schemes, authentication, hosts, ports, paths, parameters, query strings, and fragments.
+
+## OPTIONS
+
+These options control which URL features get extracted and printed to standard output.
+If none are provided, the whole URL is output with all changes applied by the URL-modifying options.
+
+  * `-s`, `--print-scheme`:
+    Print the scheme portion of the URL.
+
+  * `-u`, `--print-username`:
+    Print the username portion of the URL.
+
+  * `-w`, `--print-password`:
+    Print the password portion of the URL.
+
+  * `-o`, `--print-hostname`:
+    Print the hostname portion of the URL.
+
+  * `-p`, `--print-port`:
+    Print the port section of the URL.
+
+  * `-a`, `--print-authority`:
+    Print the full authority of the URL.
+
+  * `-d`, `--print-path`:
+    Print the path section of the URL.
+
+  * `--print-params`:
+    Print the path parameters section of the URL.
+
+  * `-q`, `--print-query`:
+    Print the query section of the URL.
+
+  * `--print-query-names`:
+    Print each query parameter name from the query string.
+
+  * `--print-query-values`:
+    Print each query parameter value from the query string.
+
+  * `-g` <name>, `--print-query-value`=<name>:
+    Print the value of the query parameter named <name>.
+
+These options modify the features of a URL.
+
+  * `-S` <scheme>, `--scheme`=<scheme>:
+    Replace the scheme portion of the URL with <scheme>.
+
+  * `-U` <username>, `--username`=<username>:
+    Replace the username portion of the URL with <username>.
+
+  * `-W` <password>, `--password`=<password>:
+    Replace the password portion of the URL with <password>.
+
+  * `-O` <hostname>, `--hostname`=<hostname>:
+    Replace the hostname portion of the URL with <hostname>.
+
+  * `-P` <port>, `--port`=<port>:
+    Replace the port portion of the URL with <port>.
+
+  * `-D` <path>, `--path`=<path>:
+    Normalize the path portion of the URL with <path>. The <path> value
+    is normalized with the path already present on the URL.
+
+  * `--params`=<params>:
+    Replace the path parameters portion of the URL with <params>.
+
+  * `--query`=<query>:
+    Replace the query portion of the URL with <query>.
+
+  * `-Q` <name-value>, `--append-query`=<name-value>:
+    Add a query <name-value> parameter to the query.
+
+  * `-F` <fragment>, `--fragment`=<fragment>:
+    Replace the fragment portion of the URL with <fragment>.
+
+These options modify the behavior of **urp**.
+
+  * `--no-url-encoding`:
+    Do not URL encode the query parameters in output.
+
+  * `--sort-query`:
+    Causes query parameters to be sorted lexicographically by name on output.
+
+  * `-x` <name>, `--ignore-query`=<name>:
+    Causes the query parameter named <name> to be omitted from output.
+
+  * `--no-query-params`:
+    Disable any parameter parsing within the query string.
+    Implicitly disables `--print-query-names`, `--print-query-values`, `--print-query-value`, `--sort-query`, and `--ignore-query`.
+
+  * `-v`, `--version`:
+    Causes **urp** to print its version information and quit.
+
+  * `-h`, `--help`:
+    Causes **urp** to print a help message and quit.
+
+## NOTES
+
+Query string parameters are expected to to be in the NAME=VALUE format.
+
+## ENVIRONMENT
+
+  * `RS`:
+    The output for each URL processed is separated by a newline.
+    This can be overridden with the record separator environment variable.
+
+  * `OFS`:
+    If specific URL features are being printed instead of the default behavior of print the full URL,
+    each field is separated by a space.
+    This can be overridden with the output field separator environment variable.
+
+## EXAMPLES
+
+Replace a hostname with another one:
+
+    $ urp --hostname=production.domain.com http://test.domain.com
+    http://production.domain.com
+
+Add a username and password to a restricted URL:
+
+    $ urp --username=foo --password=bar http://private.com
+    http://foo:bar@private.com
+
+Add a search URL parameter *q* to a URL:
+
+    $ urp --append-query=q=foo http://search.com
+    http://search.com?q=foo
+
+Get the value of a search parameter in a URL:
+
+    $ urp -g q http://search.com?q=foo
+    foo
+
+Find all the unique URLs in a file, even when the order of query parameters could be changed:
+
+    $ cat url-list | urp --sort-query | sort | uniq
+
+Add a query parameter named *sig* with the value of the MD5 hex digest of the sorted query parameters.
+This pattern is commonly used to sign API requests:
+
+    $ URL="http://api.com?foo=bar&baz=bux"
+    $ signature=$(urp --sort-query --print-query "$URL" | md5)
+    $ urp $URL --append-query=sig="$signature"
+    http://api.com?foo=bar&baz=bux&sig=ffcb2ea08dd98a0f16ca1426ce9a5305
+
+## COPYRIGHT
+
+urp is copyright 2014 Justin Poliey.
+
+

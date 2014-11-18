@@ -4,3 +4,5 @@
 *.pyc
 *.pyo
 dist
+man/urp.1
+man/urp.1.html
