@@ -4,18 +4,44 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
+  <title>urp</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 <body>
-<h1 id="urp">urp</h1>
-<p><strong>urp</strong> is a command-line tool that can extract and modify URL features.</p>
+<header>
+<h1 class="title">urp</h1>
+</header>
+<p><strong>urp</strong> is a command-line tool for building URLs, and for extracting and modifying their features. It knows all about schemes, authentication, hosts, ports, paths, parameters, query strings, and fragments.</p>
+<h2 id="installation">Installation</h2>
+<p>urp is distributed through <a href="https://pypi.python.org/pypi/urp">PyPI</a>. You can always get the latest with <a href="https://pypi.python.org/pypi/pip">pip</a>:</p>
+<pre><code>$ pip install urp</code></pre>
+<h2 id="basic-recipes">Basic Recipes</h2>
+<p>Add to the path of a URL:</p>
+<pre><code>$ urp -D bar http://domain.com/foo?baz=bux
+http://domain.com/foo/bar?baz=bux</code></pre>
+<p>Extract a value from a query parameter:</p>
+<pre><code>$ urp -g q http://domain.com/search?q=urp%20is%20dope
+urp is dope</code></pre>
+<p>Add authorization to a protected resource:</p>
+<pre><code>$ urp -U foo -W password http://protected.com
+http://foo:password@protected.com</code></pre>
+<p>Sign a request with an MD5 hex digest:</p>
+<pre><code>$ url=&quot;http://api.com/resource?param=bux&amp;app_id=foo&quot;
+$ urp $url -Q signature=$(urp $url --sort-query -q | md5)
+http://api.com/resource?param=bux&amp;app_id=foo&amp;signature=f2d434f97779e6a31dbaf606b43064a5</code></pre>
+<aside>
+What do you use <strong>urp</strong> for? You should <a href="https://twitter.com/intent/tweet?screen_name=justinpoliey" data-related="justinpoliey">tell <span class="citation" data-cites="justinpoliey">@justinpoliey</span></a>.
+</aside>
+
 <h2 id="documentation">Documentation</h2>
 <p><strong>urp</strong> is documented in its <a href="urp.1.html">manual page</a>.</p>
+<h2 id="development">Development</h2>
+<p>Development happens on the <a href="https://github.com/jdp/urp">GitHub project page</a>.</p>
 <hr />
-<p>Copyright © 2014 Justin Poliey</p>
+<p>Copyright © 2014 <a href="http://justinpoliey.com">Justin Poliey</a></p>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </body>
 </html>
