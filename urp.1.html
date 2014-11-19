@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>urp(1) - extract and modify URL features</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+  <style type='text/css' media='all'>
+  /* style: toc */
+  .man-navigation {display:block !important;position:fixed;top:0;left:113ex;height:100%;width:100%;padding:48px 0 0 0;border-left:1px solid #dbdbdb;background:#eee}
+  .man-navigation a,.man-navigation a:hover,.man-navigation a:link,.man-navigation a:visited {display:block;margin:0;padding:5px 2px 5px 30px;color:#999;text-decoration:none}
+  .man-navigation a:hover {color:#111;text-decoration:underline}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#SYNOPSIS">SYNOPSIS</a>
+    <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#OPTIONS">OPTIONS</a>
+    <a href="#NOTES">NOTES</a>
+    <a href="#ENVIRONMENT">ENVIRONMENT</a>
+    <a href="#EXAMPLES">EXAMPLES</a>
+    <a href="#COPYRIGHT">COPYRIGHT</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>urp(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>urp(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>urp</code> - <span class="man-whatis">extract and modify URL features</span>
+</p>
+
+<h2 id="SYNOPSIS">SYNOPSIS</h2>
+
+<p><code>urp</code> <code>-d</code>|<code>--print-path</code> <var>url</var>...<br />
+<code>urp</code> <code>-D</code>|<code>--path</code>=<var>path</var> <var>url</var>...<br />
+<code>urp</code> <code>--sort-query</code> <var>url</var>...</p>
+
+<h2 id="DESCRIPTION">DESCRIPTION</h2>
+
+<p><strong>urp</strong> extracts and modifies URL features.
+It knows all about schemes, authentication, hosts, ports, paths, parameters, query strings, and fragments.</p>
+
+<h2 id="OPTIONS">OPTIONS</h2>
+
+<p>These options control which URL features get extracted and printed to standard output.
+If none are provided, the whole URL is output with all changes applied by the URL-modifying options.</p>
+
+<dl>
+<dt><code>-s</code>, <code>--print-scheme</code></dt><dd><p>Print the scheme portion of the URL.</p></dd>
+<dt><code>-u</code>, <code>--print-username</code></dt><dd><p>Print the username portion of the URL.</p></dd>
+<dt><code>-w</code>, <code>--print-password</code></dt><dd><p>Print the password portion of the URL.</p></dd>
+<dt><code>-o</code>, <code>--print-hostname</code></dt><dd><p>Print the hostname portion of the URL.</p></dd>
+<dt><code>-p</code>, <code>--print-port</code></dt><dd><p>Print the port section of the URL.</p></dd>
+<dt><code>-a</code>, <code>--print-authority</code></dt><dd><p>Print the full authority of the URL.</p></dd>
+<dt><code>-d</code>, <code>--print-path</code></dt><dd><p>Print the path section of the URL.</p></dd>
+<dt><code>--print-params</code></dt><dd><p>Print the path parameters section of the URL.</p></dd>
+<dt><code>-q</code>, <code>--print-query</code></dt><dd><p>Print the query section of the URL.</p></dd>
+<dt><code>--print-query-names</code></dt><dd><p>Print each query parameter name from the query string.</p></dd>
+<dt><code>--print-query-values</code></dt><dd><p>Print each query parameter value from the query string.</p></dd>
+<dt><code>-g</code> <var>name</var>, <code>--print-query-value</code>=<var>name</var></dt><dd><p>Print the value of the query parameter named <var>name</var>.</p></dd>
+</dl>
+
+
+<p>These options modify the features of a URL.</p>
+
+<dl>
+<dt><code>-S</code> <var>scheme</var>, <code>--scheme</code>=<var>scheme</var></dt><dd><p>Replace the scheme portion of the URL with <var>scheme</var>.</p></dd>
+<dt><code>-U</code> <var>username</var>, <code>--username</code>=<var>username</var></dt><dd><p>Replace the username portion of the URL with <var>username</var>.</p></dd>
+<dt><code>-W</code> <var>password</var>, <code>--password</code>=<var>password</var></dt><dd><p>Replace the password portion of the URL with <var>password</var>.</p></dd>
+<dt><code>-O</code> <var>hostname</var>, <code>--hostname</code>=<var>hostname</var></dt><dd><p>Replace the hostname portion of the URL with <var>hostname</var>.</p></dd>
+<dt><code>-P</code> <var>port</var>, <code>--port</code>=<var>port</var></dt><dd><p>Replace the port portion of the URL with <var>port</var>.</p></dd>
+<dt><code>-D</code> <var>path</var>, <code>--path</code>=<var>path</var></dt><dd><p>Normalize the path portion of the URL with <var>path</var>. The <var>path</var> value
+is normalized with the path already present on the URL.</p></dd>
+<dt><code>--params</code>=<var>params</var></dt><dd><p>Replace the path parameters portion of the URL with <var>params</var>.</p></dd>
+<dt><code>--query</code>=<var>query</var></dt><dd><p>Replace the query portion of the URL with <var>query</var>.</p></dd>
+<dt><code>-Q</code> <var>name-value</var>, <code>--append-query</code>=<var>name-value</var></dt><dd><p>Add a query <var>name-value</var> parameter to the query.</p></dd>
+<dt><code>-F</code> <var>fragment</var>, <code>--fragment</code>=<var>fragment</var></dt><dd><p>Replace the fragment portion of the URL with <var>fragment</var>.</p></dd>
+</dl>
+
+
+<p>These options modify the behavior of <strong>urp</strong>.</p>
+
+<dl>
+<dt><code>--no-url-encoding</code></dt><dd><p>Do not URL encode the query parameters in output.</p></dd>
+<dt><code>--sort-query</code></dt><dd><p>Causes query parameters to be sorted lexicographically by name on output.</p></dd>
+<dt><code>-x</code> <var>name</var>, <code>--ignore-query</code>=<var>name</var></dt><dd><p>Causes the query parameter named <var>name</var> to be omitted from output.</p></dd>
+<dt><code>--no-query-params</code></dt><dd><p>Disable any parameter parsing within the query string.
+Implicitly disables <code>--print-query-names</code>, <code>--print-query-values</code>, <code>--print-query-value</code>, <code>--sort-query</code>, and <code>--ignore-query</code>.</p></dd>
+<dt><code>-v</code>, <code>--version</code></dt><dd><p>Causes <strong>urp</strong> to print its version information and quit.</p></dd>
+<dt><code>-h</code>, <code>--help</code></dt><dd><p>Causes <strong>urp</strong> to print a help message and quit.</p></dd>
+</dl>
+
+
+<h2 id="NOTES">NOTES</h2>
+
+<p>Query string parameters are expected to to be in the NAME=VALUE format.</p>
+
+<h2 id="ENVIRONMENT">ENVIRONMENT</h2>
+
+<dl>
+<dt class="flush"><code>RS</code></dt><dd><p>The output for each URL processed is separated by a newline.
+This can be overridden with the record separator environment variable.</p></dd>
+<dt class="flush"><code>OFS</code></dt><dd><p>If specific URL features are being printed instead of the default behavior of print the full URL,
+each field is separated by a space.
+This can be overridden with the output field separator environment variable.</p></dd>
+</dl>
+
+
+<h2 id="EXAMPLES">EXAMPLES</h2>
+
+<p>Replace a hostname with another one:</p>
+
+<pre><code>$ urp --hostname=production.domain.com http://test.domain.com
+http://production.domain.com
+</code></pre>
+
+<p>Add a username and password to a restricted URL:</p>
+
+<pre><code>$ urp --username=foo --password=bar http://private.com
+http://foo:bar@private.com
+</code></pre>
+
+<p>Add a search URL parameter <em>q</em> to a URL:</p>
+
+<pre><code>$ urp --append-query=q=foo http://search.com
+http://search.com?q=foo
+</code></pre>
+
+<p>Get the value of a search parameter in a URL:</p>
+
+<pre><code>$ urp -g q http://search.com?q=foo
+foo
+</code></pre>
+
+<p>Find all the unique URLs in a file, even when the order of query parameters could be changed:</p>
+
+<pre><code>$ cat url-list | urp --sort-query | sort | uniq
+</code></pre>
+
+<p>Add a query parameter named <em>sig</em> with the value of the MD5 hex digest of the sorted query parameters.
+This pattern is commonly used to sign API requests:</p>
+
+<pre><code>$ URL="http://api.com?foo=bar&amp;baz=bux"
+$ signature=$(urp --sort-query --print-query "$URL" | md5)
+$ urp $URL --append-query=sig="$signature"
+http://api.com?foo=bar&amp;baz=bux&amp;sig=ffcb2ea08dd98a0f16ca1426ce9a5305
+</code></pre>
+
+<h2 id="COPYRIGHT">COPYRIGHT</h2>
+
+<p>urp is copyright 2014 Justin Poliey <a href="http://justinpoliey.com" data-bare-link="true">http://justinpoliey.com</a></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'></li>
+    <li class='tc'>November 2014</li>
+    <li class='tr'>urp(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>
